@@ -1,11 +1,12 @@
 import * as React from 'react';
 import './App.css';
+import ArrowButton from "./Component/ArrowButton";
 
 class Home extends React.Component {
   public render() {
     return (
       <div>
-          hei :)
+          <ArrowButton direction={"up"}/>
       </div>
     );
   }
