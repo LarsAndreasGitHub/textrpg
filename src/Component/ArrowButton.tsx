@@ -11,9 +11,7 @@ interface ArrowButtonProps {
 
 const ArrowButton: React.StatelessComponent<ArrowButtonProps> = (props) => {
     return(
-        <div>
-
-        </div>
+        <div />
     );
 };
 
