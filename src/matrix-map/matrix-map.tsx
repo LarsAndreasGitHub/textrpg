@@ -23,7 +23,7 @@ function getRelativePosition(direction: MapDirection): [number, number] {
     }
 }
 
-interface MapPosition {
+export interface MapPosition {
     x: number;
     y: number;
 }
