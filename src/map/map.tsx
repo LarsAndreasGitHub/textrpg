@@ -1,5 +1,7 @@
 import * as React from "react";
 
+export type MatrixMap = MapPosition[];
+
 export enum MapDirection {
     UP = 0,
     LEFT = 1,
@@ -39,6 +41,7 @@ export interface MapPosition {
 }
 
 interface Props {
+    matrixMap: MatrixMap;
     startingPosition: MapPosition;
     startingDirection: MapDirection;
 }
@@ -48,7 +51,7 @@ interface State {
     direction: MapDirection;
 }
 
-export class MatrixMap extends React.Component<Props, State> {
+export class Map extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -63,10 +66,15 @@ export class MatrixMap extends React.Component<Props, State> {
             this.state.position,
             newDirection
         );
-        this.setState({
-            direction: newDirection,
-            position: newPosition,
-        });
+
+        if (this.props.matrixMap.includes(newPosition)) { // TODO Vil bare gå videre hvis ny position er innafor map
+            this.setState({
+                direction: newDirection,
+                position: newPosition,
+            });
+        } else {
+            console.log('outside da map'); //tslint:disable-line
+        }
     }
 
     public render() {

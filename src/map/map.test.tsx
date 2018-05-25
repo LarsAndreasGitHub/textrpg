@@ -1,4 +1,4 @@
-import {MapDirection, getNewDirection, getNewPosition} from "./matrix-map";
+import {MapDirection, getNewDirection, getNewPosition} from "./map";
 
 it('Tests the basic mechanics of turning from an absolute direction by a relative direction. It is a group.', () => {
     expect(getNewDirection(MapDirection.UP, MapDirection.UP)).toBe(MapDirection.UP);

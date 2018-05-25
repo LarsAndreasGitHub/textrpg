@@ -1,15 +1,17 @@
 import * as React from 'react';
 import './App.css';
 import ArrowButton from "./Component/ArrowButton";
-import {MapDirection, MatrixMap} from "./matrix-map/matrix-map";
+import {matrixMap} from "./map/matrix-map";
+import {MapDirection, Map} from "./map/map";
 
 class Home extends React.Component {
     public render() {
         return (
             <div>
-                <MatrixMap
+                <Map
                     startingDirection={MapDirection.UP}
                     startingPosition={{x: 0, y: 0}}
+                    matrixMap={matrixMap}
                 />
                 <ArrowButton direction={"up"}/>
             </div>
