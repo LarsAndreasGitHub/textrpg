@@ -7,8 +7,16 @@ export enum MapDirection {
     RIGHT = 3,
 }
 
-export function turnToDirection(currentDirection: MapDirection, relativeDirection: MapDirection): MapDirection {
+export function getNewDirection(currentDirection: MapDirection, relativeDirection: MapDirection): MapDirection {
     return (currentDirection + relativeDirection) % 4;
+}
+
+export function getNewPosition(currentPosition: MapPosition, oneStepInDirection: MapDirection): MapPosition {
+    const relativePosition: [number, number] = getRelativePosition(oneStepInDirection);
+    return {
+        x: currentPosition.x + relativePosition[0],
+        y: currentPosition.y + relativePosition[1],
+    };
 }
 
 function getRelativePosition(direction: MapDirection): [number, number] {
@@ -50,16 +58,11 @@ export class MatrixMap extends React.Component<Props, State> {
     }
 
     travelInDirection(direction: MapDirection) {
-        console.log('traveling in direction', direction); //tslint:disable-line
-        const newDirection: MapDirection = turnToDirection(this.state.direction, direction);
-        const relativePosition: [number, number] = getRelativePosition(newDirection);
-        const newPosition: MapPosition = {
-            x: this.state.position.x + relativePosition[0],
-            y: this.state.position.x + relativePosition[1],
-        };
-
-        console.log('new position', newPosition); //tslint:disable-line
-
+        const newDirection = getNewDirection(this.state.direction, direction);
+        const newPosition = getNewPosition(
+            this.state.position,
+            newDirection
+        );
         this.setState({
             direction: newDirection,
             position: newPosition,
@@ -77,6 +80,7 @@ export class MatrixMap extends React.Component<Props, State> {
                 <button onClick={downButtonOnClick}>DOWN</button>
                 <button onClick={leftButtonOnClick}>LEFT</button>
                 <button onClick={rightButtonOnClick}>RIGHT</button>
+                {`x: ${this.state.position.x}, y: ${this.state.position.y}`}
                 {this.props.children}
             </div>
         );
