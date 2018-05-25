@@ -1,12 +1,14 @@
 import * as React from "react";
 
-// tslint:disable
-
 export enum MapDirection {
     UP = 0,
-    DOWN = 1,
-    LEFT = 2,
+    LEFT = 1,
+    DOWN = 2,
     RIGHT = 3,
+}
+
+export function turnToDirection(currentDirection: MapDirection, relativeDirection: MapDirection): MapDirection {
+    return (currentDirection + relativeDirection) % 4;
 }
 
 function getRelativePosition(direction: MapDirection): [number, number] {
@@ -48,12 +50,15 @@ export class MatrixMap extends React.Component<Props, State> {
     }
 
     travelInDirection(direction: MapDirection) {
-        const newDirection: MapDirection = (direction + this.state.direction) % 4;
+        console.log('traveling in direction', direction); //tslint:disable-line
+        const newDirection: MapDirection = turnToDirection(this.state.direction, direction);
         const relativePosition: [number, number] = getRelativePosition(newDirection);
         const newPosition: MapPosition = {
             x: this.state.position.x + relativePosition[0],
             y: this.state.position.x + relativePosition[1],
         };
+
+        console.log('new position', newPosition); //tslint:disable-line
 
         this.setState({
             direction: newDirection,
@@ -62,8 +67,16 @@ export class MatrixMap extends React.Component<Props, State> {
     }
 
     public render() {
+        const upButtonOnClick = () => this.travelInDirection(MapDirection.UP);
+        const downButtonOnClick = () => this.travelInDirection(MapDirection.DOWN);
+        const leftButtonOnClick = () => this.travelInDirection(MapDirection.LEFT);
+        const rightButtonOnClick = () => this.travelInDirection(MapDirection.RIGHT);
         return (
             <div>
+                <button onClick={upButtonOnClick}>UP</button>
+                <button onClick={downButtonOnClick}>DOWN</button>
+                <button onClick={leftButtonOnClick}>LEFT</button>
+                <button onClick={rightButtonOnClick}>RIGHT</button>
                 {this.props.children}
             </div>
         );
