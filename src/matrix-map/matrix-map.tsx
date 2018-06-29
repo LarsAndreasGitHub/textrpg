@@ -48,11 +48,11 @@ export class MatrixMap extends React.Component<Props, State> {
     }
 
     travelInDirection(direction: MapDirection) {
-        const newDirection: MapDirection = (direction + this.state.direction) % 4;
+        const newDirection: MapDirection = (direction + this.state!.direction) % 4;
         const relativePosition: [number, number] = getRelativePosition(newDirection);
         const newPosition: MapPosition = {
-            x: this.state.position.x + relativePosition[0],
-            y: this.state.position.x + relativePosition[1],
+            x: this.state!.position.x + relativePosition[0],
+            y: this.state!.position.x + relativePosition[1],
         };
 
         this.setState({
