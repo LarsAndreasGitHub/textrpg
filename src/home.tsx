@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './App.css';
+import './App.less';
 import ArrowButton from "./Component/ArrowButton";
 import {matrixMap} from "./map/matrix-map";
 import {MapDirection, Map} from "./map/map";

@@ -9,8 +9,12 @@
     "react-shapes": "^0.1.0"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
+    "start:ts": "react-scripts-ts start",
+    "start:less": "less-watch-compiler ./src ./public index.less",
+    "start": "npm-run-all -p start:*",
+    "build:ts": "react-scripts-ts build",
+    "build:less": "node ./node_modules/less/bin/lessc/ ./src/index.less ./public/index.css",
+    "build": "npm-run-all -p build:*",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject"
   },
