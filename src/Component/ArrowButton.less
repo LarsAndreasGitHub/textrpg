@@ -1,9 +1,79 @@
-.up {
-  margin: 20px;
-  display: block;
-  border-radius: 50%;
-  width: 100px;
-  height: 100px;
-  background-color: white;
 
+.arrowbutton {
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  background-color: white;
+  position: absolute;
+  margin: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  //overriding default button styling
+  border: 1rem solid white;
+
+  &:active {
+    background-color: black;
+  }
+}
+
+.up {
+  top: 0;
+  left: ~'calc(50% - 5rem)';
+
+  &:hover {
+    margin-top: 1rem;
+  }
+}
+
+.down {
+  bottom: 0;
+  left: ~'calc(50% - 5rem)';
+
+  &:hover {
+    margin-bottom: 1rem;
+  }
+}
+
+.right {
+  top: ~'calc(50% - 5rem)';
+  right: 0;
+
+  &:hover {
+    margin-right: 1rem;
+  }
+}
+
+.left {
+  top: ~'calc(50% - 5rem)';
+  left: 0;
+
+  &:hover {
+    margin-left: 1rem;
+  }
+}
+
+.triangle-container{
+  width: 1rem;
+  margin: auto;
+  text-align:center;
+
+  .triangle{
+    fill: firebrick;
+    stroke: white;
+    stroke-width: 8;
+    transition: all 0.8s ease-in-out;
+
+    @keyframes mymove {
+      0%   {opacity:0}
+      50%  {opacity:1}
+      100% {opacity:0}
+    }
+  }
+}
+
+.triangle-svg {
+  height: 500px;
+  width: 500px;
 }

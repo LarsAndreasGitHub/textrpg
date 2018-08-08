@@ -11,7 +11,12 @@ class Home extends React.Component {
                     startingDirection={MapDirection.UP}
                     startingPosition={{x: 0, y: 0}}
                 />
-                <ArrowButton direction={"up"}/>
+                <div className="arrowpad">
+                    <ArrowButton direction={"up"}/>
+                    <ArrowButton direction={"down"}/>
+                    <ArrowButton direction={"right"}/>
+                    <ArrowButton direction={"left"}/>
+                </div>
             </div>
         );
     }
